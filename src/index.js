@@ -21,6 +21,17 @@ function updateTime() {
 			"h:mm:ss [<small>]A[</small>]"
 		);
 	}
+	// Istanbul
+	let istanbulElement = document.querySelector("#istanbul");
+	if (istanbulElement) {
+		let istanbulDateElement = istanbulElement.querySelector(".date");
+		let istanbulTimeElement = istanbulElement.querySelector(".time");
+		let istanbulTime = moment().tz("Europe/Istanbul");
+		istanbulDateElement.innerHTML = istanbulTime.format("MMMM Do YYYY");
+		istanbulTimeElement.innerHTML = istanbulTime.format(
+			"h:mm:ss [<small>]A[</small>]"
+		);
+	}
 }
 
 function updateCity(event) {
@@ -28,7 +39,7 @@ function updateCity(event) {
 	if (cityTimezone === "current") {
 		cityTimezone = moment.tz.guess();
 	}
-	let cityName = cityTimezone.split("/")[1];
+	let cityName = cityTimezone.replace("_", " ").split("/")[1];
 	let cityTime = moment().tz(cityTimezone);
 	let citiesElement = document.querySelector("#cities");
 	citiesElement.innerHTML = `
